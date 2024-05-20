@@ -1,0 +1,34 @@
+{
+    "credit_score": {
+        "active": true,
+        "smote": "auto",
+        "data_model": "CreditScore",
+        "pred_models": {
+            "rf": {},
+            "rbf_svm": {},
+            "dnn": {}
+        }
+    },
+    
+    "drug_addiction": {
+        "active": false,
+        "smote": false,
+        "data_model": null,
+        "pred_models": {
+            "rf": {},
+            "rbf_svm": {},
+            "dnn": {}
+        }
+    },
+    
+    "thyroid": {
+        "active": false,
+        "smote": false,
+        "data_model": null,
+        "pred_models": {
+            "rf": {},
+            "rbf_svm": {},
+            "dnn": {}
+        }
+    }
+}
