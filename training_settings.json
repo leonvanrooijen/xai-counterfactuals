@@ -1,6 +1,6 @@
 {
     "credit_score": {
-        "active": true,
+        "active": false,
         "smote": "auto",
         "data_model": "CreditScore",
         "pred_models": {
@@ -10,10 +10,10 @@
         }
     },
     
-    "drug_addiction": {
-        "active": false,
+    "student_addiction": {
+        "active": true,
         "smote": false,
-        "data_model": null,
+        "data_model": "StudentAddiction",
         "pred_models": {
             "rf": {},
             "rbf_svm": {},
@@ -24,7 +24,7 @@
     "thyroid": {
         "active": false,
         "smote": false,
-        "data_model": null,
+        "data_model": "Thyroid",
         "pred_models": {
             "rf": {},
             "rbf_svm": {},

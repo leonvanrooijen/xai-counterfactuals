@@ -1,0 +1,7 @@
+
+# WOW, we have an awesome requirements file. Let's install it.
+
+pandas
+joblib
+scikit-learn
+imblearn
