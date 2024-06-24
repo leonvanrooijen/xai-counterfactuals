@@ -12,7 +12,7 @@
     
     "student_addiction": {
         "active": true,
-        "smote": false,
+        "smote": true,
         "data_model": "StudentAddiction",
         "pred_models": {
             "rf": {},
