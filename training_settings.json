@@ -1,6 +1,6 @@
 {
     "credit_score": {
-        "active": false,
+        "active": true,
         "smote": "auto",
         "data_model": "CreditScore",
         "pred_models": {
@@ -11,7 +11,7 @@
     },
     
     "student_addiction": {
-        "active": true,
+        "active": false,
         "smote": true,
         "data_model": "StudentAddiction",
         "pred_models": {

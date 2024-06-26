@@ -1,0 +1,76 @@
+Model training evaluation for credit_score on 25_06_2024__22-24
+    MODEL rf:
+    Best parameters: {'rf__max_depth': 20, 'rf__min_samples_leaf': 1, 'rf__min_samples_split': 2, 'rf__n_estimators': 300}
+    Training score: 0.8002507287425911
+    Test score: 0.812503917922143
+    
+    Classification report:
+                  precision    recall  f1-score   support
+
+           2       0.78      0.93      0.85     15953
+           1       0.84      0.68      0.75     15952
+           0       0.83      0.83      0.83     15952
+
+    accuracy                           0.81     47857
+   macro avg       0.82      0.81      0.81     47857
+weighted avg       0.82      0.81      0.81     47857
+
+    Accuracy: 0.812503917922143
+    
+    Confusion matrix:
+    [[14787   897   269]
+ [ 2691 10806  2455]
+ [ 1540  1121 13291]]
+    
+    Labels: [2 1 0]
+    
+    MODEL rbf_svm:
+    Best parameters: {'rbf_svm__C': 10, 'rbf_svm__gamma': 0.01, 'rbf_svm__kernel': 'rbf'}
+    Training score: 0.7873550275138739
+    Test score: 0.8072800217314081
+    
+    Classification report:
+                  precision    recall  f1-score   support
+
+           2       0.82      0.89      0.86     15953
+           1       0.77      0.73      0.75     15952
+           0       0.83      0.80      0.82     15952
+
+    accuracy                           0.81     47857
+   macro avg       0.81      0.81      0.81     47857
+weighted avg       0.81      0.81      0.81     47857
+
+    Accuracy: 0.8072800217314081
+    
+    Confusion matrix:
+    [[14186  1491   276]
+ [ 1937 11610  2405]
+ [ 1089  2025 12838]]
+    
+    Labels: [2 1 0]
+    
+    MODEL dnn:
+    Best parameters: {'dnn__activation': 'relu', 'dnn__alpha': 0.001, 'dnn__hidden_layer_sizes': (100,), 'dnn__learning_rate': 'adaptive'}
+    Training score: 0.6095286051332123
+    Test score: 0.6784796372526485
+    
+    Classification report:
+                  precision    recall  f1-score   support
+
+           2       0.76      0.73      0.75     15953
+           1       0.57      0.81      0.66     15952
+           0       0.81      0.50      0.62     15952
+
+    accuracy                           0.68     47857
+   macro avg       0.71      0.68      0.68     47857
+weighted avg       0.71      0.68      0.68     47857
+
+    Accuracy: 0.6784796372526485
+    
+    Confusion matrix:
+    [[11685  3752   516]
+ [ 1748 12869  1335]
+ [ 1896  6140  7916]]
+    
+    Labels: [2 1 0]
+    

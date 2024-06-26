@@ -33,10 +33,14 @@ class Dataset:
     def __init__(self, smote: str | bool = False, random_state: int = 42):
         
         self.data = pd.read_csv(self.path, sep=self.sep)
+        self.data = self.preprocess(self.data)
         self.random_state = random_state
         
         if smote not in [False, None]:
             self.data = self.__smote(smote)
+    
+    def preprocess(self, data: DataFrame) -> DataFrame:
+        return data
             
     def __smote(self, smote: str) -> DataFrame:
         

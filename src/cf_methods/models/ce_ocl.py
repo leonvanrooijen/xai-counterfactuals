@@ -3,8 +3,21 @@ import src.cf_methods.models.helpers.ce_ocl_helper as em
 from pyomo.environ import *
 from pandas import DataFrame
 import dice_ml
+import numpy as np
+
 
 class CE_OCL(boilerplate.CFMethod):
+    
+    """
+    
+    A simple wrapper for the CE-OCL algorithm.
+    
+    Use:
+    
+    ce_ocl = CE_OCL()
+    
+    
+    """
     
     def set_data_restrictions(self,
                    real_features = [],
@@ -45,7 +58,7 @@ class CE_OCL(boilerplate.CFMethod):
         try:
             CEs, CEs_, final_model = self._opt_api(
                 X = self.X_train,  
-                X1,
+                X1 = self.trust_region_reference,
                 u = factual.iloc[0, :],
                 F_r = self.real_features,
                 F_b = self.binary_features,

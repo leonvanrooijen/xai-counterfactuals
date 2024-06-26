@@ -1,0 +1,38 @@
+{
+    "diversity-proximity": {
+        "NICE": {
+            "reward": ["proximity"]
+        },
+        "DICE": {
+            "sparsity": [0],
+            "diversity": [0.5, 1, 1.5],
+            "proximity": [0.5, 1, 1.5]
+        },
+        "CE_OCL": {
+            "sparsity": [0],
+            "sparsity_constraint": false
+        }
+    },
+    
+    
+    "sparsity-proximity": {
+        "NICE": {
+            "reward": ["sparsity", "proximity"]
+        },
+        "DICE": {
+            "sparsity": [0.5, 1, 1.5],
+            "diversity": [0.5, 1, 1.5],
+            "proximity": [0]
+        },
+        "CE_OCL": {
+            "sparsity": [5000, 10000, 15000],
+            "sparsity_constraint": [true, false]
+        }
+
+
+
+    }
+
+
+
+}

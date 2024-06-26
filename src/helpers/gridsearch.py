@@ -73,7 +73,7 @@ class GridsSearchCF:
         
         raise ValueError("Invalid scoring metric")
 
-    def optimize(self, X_test: DataFrame, y):
+    def optimize(self, X_test: DataFrame, y_test: DataFrame):
         
         optimal_score = 0
         optimal_params = None
@@ -81,15 +81,30 @@ class GridsSearchCF:
         for param_combination in self.__generate_param_combinations(self.param_grid):
             
             score_subtotal = 0
+            metric_collection = None
             
             #Track run-time
             start_time = time.time()
             
             # For every factual, we generate one or multiple counterfactuals
-            for factual in X:   
+            for factual in X_test:   
             
-                cf_model = self.model(**param_combination)
-                counterfactuals = cf_model.optimize(X, y)
+                cf_model = self.model.set_params(**param_combination)
+                counterfactuals = cf_model.optimize(X_test, y_test)
+                
+                if len(counterfactuals) > 0:
+                    analysis = evaluation.CounterfactualAnalysis(model_instance, dataset)
+                    
+                    # add metrics to the metric collection as a dataframe
+                    
+                    if metric_collection is None:
+                        
+                        metric_collection = analysis.evaluate()
+                        
+                    else:
+                        
+                        metric_collection.append(analysis.evaluate())
+        
             
             end_time = time.time()
             
@@ -98,6 +113,7 @@ class GridsSearchCF:
             if self.__evaluate(X, counterfactuals) > optimal_score:
                 optimal_score = self.__evaluate(X, counterfactuals)
                 optimal_params = param_combination
+                self.best_metric_collection = metric_collection
                 
         self.best_params_ = optimal_params
         self.best_score_ = optimal_score

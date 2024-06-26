@@ -1,9 +1,12 @@
-# xai-counterfactuals FAQ
+# FlexCEy -- FAQ
+Increasing flexiblility of CE algorithms in order to promote mass adoption.  
 
  ## Repo structure
     ├── README.md
-    ├── ce-generation.ipynb # WIP! 
+    ├── ce-generation.ipynb #
     ├── cf_methods # WIP
+    │   └── clean
+    │       └── ... # Clean datasets
     ├── data
     │   ├── boilerplate.py
     │   └── clean
@@ -22,9 +25,11 @@
 1. Download or clone the project
 2. Run the following command
 ```
-pip install ......... # this list will be huge, move to requirements.txt?
+pip install -r requirements.txt
 ```
-3. Step 3 description
+3. IF necessary: adjust datasets, black-box classifiers. See below
+4. Run model training notebook.
+5. Run CF generation notebook.
 
 ## Used datasets (Kaggle)
 
