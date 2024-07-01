@@ -4,9 +4,10 @@ from pyomo.environ import *
 from pandas import DataFrame
 import dice_ml
 import numpy as np
+import pandas as pd
 
 
-class CE_OCL(boilerplate.CFMethod):
+class CE_OCL(boilerplate.CounterfactualMethod):
     
     """
     
@@ -18,6 +19,8 @@ class CE_OCL(boilerplate.CFMethod):
     
     
     """
+    
+    re_run = 0
     
     def set_data_restrictions(self,
                    real_features = [],
@@ -54,10 +57,11 @@ class CE_OCL(boilerplate.CFMethod):
     
     def generate(self, factual: DataFrame, nr_cfs=1):
         
+        #X_train = self.df.drop(self.target, axis=1)
         
         try:
             CEs, CEs_, final_model = self._opt_api(
-                X = self.X_train,  
+                X = self.df,  
                 X1 = self.trust_region_reference,
                 u = factual.iloc[0, :],
                 F_r = self.real_features,
@@ -72,19 +76,29 @@ class CE_OCL(boilerplate.CFMethod):
                 mu = self.sparsity, # hyperparameter
                 tr_region = self.trust_region_constraint,
                 enlarge_tr = self.enlarge_trust_region_once,
-                num_counterfactuals = nr_cfs,   
+                num_counterfactuals = nr_cfs,
+                model_master=self.model_master   
             )
             
             self.enlarge_trust_region_once = False
-            
+            print("FOUND")
             return CEs
             
-        except:
+        except Exception as e:
             
-            # Enlarge the trust region once if the optimization fails
+            print('Optimization error: ', e)
             
-            self.enlarge_trust_region_once = True
-            return self.generate(nr_cfs)
+            # Enlarge the trust region ONCE if the optimization fails
+            # (if the trust region constraint is active)
+            if self.re_run != 1 and self.trust_region_constraint:
+                
+                self.re_run += 1
+                self.enlarge_trust_region_once = True
+                return self.generate(nr_cfs)
+            
+            self.re_run = 0
+            print('Optimization failed twice. Returning empty DataFrame')
+            return DataFrame()
         
         
 

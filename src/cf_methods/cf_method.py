@@ -1,8 +1,8 @@
 from pandas import DataFrame
 
 class CounterfactualMethod:
-    def __init__(self, X_train: DataFrame):
-        self.dataframe = dataframe
+    def __init__(self, df: DataFrame):
+        self.df = df
     
     def set_params(self, **params):
         pass

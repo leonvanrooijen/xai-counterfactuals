@@ -16,6 +16,20 @@ class Thyroid(Dataset):
     data: pd.DataFrame
     y = 'binaryClass' 
     
+    
+    numerical_features = [
+        'age', 'sex', 'on thyroxine', 'query on thyroxine',
+        'on antithyroid medication', 'sick', 'pregnant', 'thyroid surgery',
+        'I131 treatment', 'query hypothyroid', 'query hyperthyroid', 'lithium',
+        'goitre', 'tumor', 'hypopituitary', 'psych', 'TSH measured', 'TSH',
+       'T3 measured', 'T3', 'TT4 measured', 'TT4', 'T4U measured', 'T4U',
+       'FTI measured', 'FTI', 'TBG measured']
+       
+    categorical_features = []
+    
+    continuous_features = ['age', 'sex','TSH', 'T3', 'TT4', 'T4U', 'FTI']
+    
+    
     def preprocess(self, data: pd.DataFrame) -> pd.DataFrame:
         
         # Copied from https://www.kaggle.com/code/yasserhessein/thyroid-disease-detection-using-deep-learning/notebook
@@ -24,12 +38,12 @@ class Thyroid(Dataset):
         data["binaryClass"] = data["binaryClass"].map({"P":0,"N":1})
         
         # True = 1, False = 0 mappings
-        data = data.replace({"t":1,"f":0})
+        data = data.map({"t":1,"f":0})
         
-        data = data.replace({"?":np.NAN})
+        data = data.map({"?":np.NAN})
         
         # Map sex
-        data = data.replace({"F":0,"M":1})
+        data = data.map({"F":0,"M":1})
         
         cols = data.columns[data.dtypes.eq('object')]
         data[cols] = data[cols].apply(pd.to_numeric, errors='coerce')

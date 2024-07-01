@@ -10,7 +10,7 @@
         },
         "CE_OCL": {
             "sparsity": [0],
-            "sparsity_constraint": false
+            "sparsity_constraint": [false]
         }
     },
     

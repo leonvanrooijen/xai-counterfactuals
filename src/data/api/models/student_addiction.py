@@ -13,6 +13,16 @@ class StudentAddiction(Dataset):
     
     y = 'Addiction_Class' 
     
+    numerical_features = [
+        'Experimentation', 'Academic_Performance_Decline', 'Social_Isolation',
+       'Financial_Issues', 'Physical_Mental_Health_Problems',
+       'Legal_Consequences', 'Relationship_Strain', 'Risk_Taking_Behavior',
+       'Withdrawal_Symptoms', 'Denial_and_Resistance_to_Treatment'
+       ]
+    
+    categorical_features = []
+    continuous_features = []
+    
     def train_test_split(self, x_res, y_res):
         
         xy_test = pd.read_csv(self.path_test, sep=self.sep)
